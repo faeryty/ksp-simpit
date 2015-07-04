@@ -1,8 +1,5 @@
 #include <LCSeven.h>
 
-//We always have to include the library
-
- 
 /*
  Now we need a LedControl to work with.
  ***** These pin numbers will probably not work with your hardware *****

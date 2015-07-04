@@ -1,6 +1,7 @@
 /*
- *    LedControl.h - A library for controling Leds with a MAX7219/MAX7221
- *    Copyright (c) 2007 Eberhard Fahle
+ *    LCSeven.cpp - A library for controlling Seven Segment LEDs with a MAX72xx
+ *    Copyright (c) 2015 Ty Hayes
+ *		  Based on the LedControl library by Eberhard Fahle
  * 
  *    Permission is hereby granted, free of charge, to any person
  *    obtaining a copy of this software and associated documentation
@@ -24,8 +25,8 @@
  *    OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef FuckingIDE_h
-#define FuckingIDE_h
+#ifndef LCSeven_h
+#define LCSeven_h
 
 #include <avr/pgmspace.h>
 
@@ -69,7 +70,7 @@ const static byte charTable [] PROGMEM  = {
     B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000
 };
 
-class FuckingIDE {
+class LCSeven {
     private :
         /* The array for shifting the data to the devices */
         byte spidata[16];
@@ -96,7 +97,7 @@ class FuckingIDE {
          * csPin		pin for selecting the device 
          * numDevices	maximum number of devices that can be controled
          */
-        FuckingIDE(int dataPin, int clkPin, int csPin, int numDevices=1);
+        LCSeven(int dataPin, int clkPin, int csPin, int numDevices=1);
 
         /*
          * Gets the number of devices attached to this LedControl.
@@ -201,7 +202,7 @@ class FuckingIDE {
         void showError(int addr);
 };
 
-#endif	//FuckingIDE.h
+#endif	//LCSeven.h
 
 
 
