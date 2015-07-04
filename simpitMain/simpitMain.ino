@@ -85,8 +85,19 @@ void scrollDigits() {
 
 
 void loop(void) {
-  // writeArduinoOn7Segment();
-  lc.clearDisplay(0);
-  lc.showError(0);
+/*
+  float showMe[] = {1.2345678, 23.456789, 345.67890, 4567.890/*1, 56789.012, 678901.23, 7890123.4, 12.34, 1.3764, 2345678.3454};
+
+    for (int i = 0; i < 4; i++) {
+      lc.clearDisplay(0);
+      lc.displayFloat(showMe[i],0,8,3);
+      delay(2000);
+    }
+*/
+
+      lc.clearDisplay(0);
+      lc.displayFloat((float)123.3897378,0,8,1);
+      delay(5000);
+    
 }
 

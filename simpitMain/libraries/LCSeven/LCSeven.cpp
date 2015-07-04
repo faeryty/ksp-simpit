@@ -27,6 +27,8 @@
 
 
 #include "LCSeven.h"
+#include<stdlib.h>
+#include<math.h>
 
 //the opcodes for the MAX7221 and MAX7219
 #define OP_NOOP   0
@@ -249,4 +251,43 @@ void LCSeven::showError(int addr){
     status[offset+digit]= v;
     spiTransfer(addr, digit+1,v);  
   }
+}
+
+void LCSeven::displayFloat(float floatVal, int addr, int numDigits, int precision){
+	
+	//this doesn't handle negative numbers yet
+	
+	int lengthIncDot = precision > 0 ? numDigits + 1 : numDigits;
+	
+	int arraySize = log10(floatVal)+1;
+	
+	if(precision>0){
+		arraySize += precision+1;
+	}
+	
+	if (arraySize > lengthIncDot|| precision > numDigits){
+		showError(addr);
+		return;
+	}
+	
+	///working as expected to here
+	char charsToShow[lengthIncDot+1];
+	
+	//this function will ROUND the float.  Don't expect truncation, because you spent quite a while trying to get that last night!
+	dtostrf(floatVal, lengthIncDot, precision, charsToShow);
+	
+	bool dp = false;
+		
+	for(int i=0;i<lengthIncDot;i++){
+	
+		int digit = dp ? i-1:i;
+		
+		if(charsToShow[i] =='.'){
+			dp = true;
+			continue;
+		}
+		
+		setChar(addr, digit, charsToShow[i], (charsToShow[i+1] =='.'));
+	}
+		
 }

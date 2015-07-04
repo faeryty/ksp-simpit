@@ -200,6 +200,8 @@ class LCSeven {
          * Displays an "Error" message on 2 chained 4 digit, 7 segment displays
          */
         void showError(int addr);
+		
+		void displayFloat(float floatVal, int addr, int numDigits, int precision);
 };
 
 #endif	//LCSeven.h
